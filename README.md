@@ -4,10 +4,10 @@
 Project Creation Date: 29/11/2021
 README file Creation Date: 24/12/2021
 ### Project Title
-Replace the Project Title
+Explore US Bikeshare Data
 
 ### Description
-Describe what your project is about and what it does
+Use data provided by Motivate, a bike share system provider for many major cities in the United States, to uncover bike share usage patterns. Compare the system usage between three large cities: Chicago, New York City, and Washington, DC using python.
 
 ### Files used
 Include the files used
