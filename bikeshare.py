@@ -52,6 +52,7 @@ def read_data(city):
         (str) excerpts of raw data
     """
     should_read = input("Do you want to view excerpts of the raw data? Type 'yes' or 'no' \n").lower()
+    # N is the number of lines printed each time
     N = 5
     replies = ["yes", "no"]
 
@@ -120,14 +121,15 @@ def time_stats(df, month, day):
         most_common_month = df["month"].mode()[0]
         months = ["January", "February", "March", "April", "May", "June"]
         most_common_month = months[most_common_month-1]
-        print(f"The most common month: {most_common_month}")
 
+        print(f"The most common month: {most_common_month}")
 
 
     # TO DO: display the most common day of week
     # The question, "the most common day of the week", is only valid if the user requests for all the available months
     if day == "all":
         most_common_day_of_week = df["day_of_week"].mode()[0]
+
         print(f"The most common day of the week: {most_common_day_of_week}")
 
     # TO DO: display the most common start hour
@@ -152,7 +154,7 @@ def station_stats(df):
     popular_end_station = df["End Station"].mode()[0]
     print(popular_end_station)
 
-    # TO DO: display most frequent combination of start station and end station trip
+    # TO DO: display most frequent combination of start and end stations trip
     df["station_combination"] = df["Start Station"]+ " & " + df["End Station"]
     most_frequent_station_combination = df["station_combination"].mode()[0]
     print(most_frequent_station_combination)
