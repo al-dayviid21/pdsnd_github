@@ -23,7 +23,7 @@ def get_filters():
     while city not in cities:
         print("Wrong input! \nTry again.")
         city = input("What city data are you interested in? (chicago, new york city, washington): \n").lower()
-        
+
     # TO DO: get user input for month (all, january, february, ... , june)
     month = input("Which month are you interested in? (all, january, february, ... , june): \n").lower()
     months = ["all", "january", "february", "march", "april", "may", "june"]
@@ -38,7 +38,7 @@ def get_filters():
     while day not in days_in_a_week:
         print("Wrong input! \nTry again.")
         day = input("Which day of the week are you intereted in? (all, monday, tuesday, ... sunday): \n").lower()
-    
+
     print('-'*40)
     return city, month, day
 
@@ -52,32 +52,33 @@ def read_data(city):
         (str) excerpts of raw data
     """
     should_read = input("Do you want to view excerpts of the raw data? Type 'yes' or 'no' \n").lower()
+    # N is the number of lines printed each time
     N = 5
     replies = ["yes", "no"]
 
     while should_read not in replies:
         print("Wrong input! \nTry again.")
         should_read = input("Do you want to view excerpts of the raw data? Type 'yes' or 'no' \n").lower()
-        
+
     while should_read == 'yes':
         with open(CITY_DATA[city], "r") as file:
             if file == "":
                 print("End of file")
                 break
-                       
+
             print('\nLoading raw data....\n')
             print('\nHere you go!\n')
             start_time = time.time()
-            
+
             # Slices the file to show the first N lines
             lines = islice(file, N)
             for line in lines:
                 print(line)
-        
+
         print("\nThis took %s seconds." % (time.time() - start_time))
         should_read = input("Do you want to view more excerpts of the raw data? Type 'yes' or 'no' \n").lower()
         N += 5
-        
+
         print('-'*40)
 
 def load_data(city, month, day):
@@ -93,18 +94,18 @@ def load_data(city, month, day):
     """
     df = pd.read_csv(CITY_DATA[city])
     df["Start Time"] = pd.to_datetime(df["Start Time"])
-    
+
     df["month"] = df["Start Time"].dt.month
     df["day_of_week"] = df["Start Time"].dt.day_name()
-    
+
     if month != "all":
         months = ["january", "february", "march", "april", "may", "june"]
-        month = months.index(month) + 1 
+        month = months.index(month) + 1
         df = df[df["month"] == month]
-        
+
     if day != "all":
         df = df[df["day_of_week"] == day.title()]
-        
+
     return df
 
 
@@ -121,14 +122,14 @@ def time_stats(df, month, day):
         months = ["January", "February", "March", "April", "May", "June"]
         most_common_month = months[most_common_month-1]
         print("The most common month:", most_common_month)
-         
+
 
     # TO DO: display the most common day of week
     # The question, "the most common day of the week", is only valid if the user requests for all the available months
     if day == "all":
         most_common_day_of_week = df["day_of_week"].mode()[0]
         print("The most common day of the week:", most_common_day_of_week)
-    
+
     # TO DO: display the most common start hour
     most_common_start_hour = df["Start Time"].dt.hour.mode()[0]
     print("The most common start hour:", most_common_start_hour)
@@ -194,7 +195,7 @@ def user_stats(df):
     try:
         gender_count = df["Gender"].value_counts()
         print("\nThe number of users per gender: ")
-        print(gender_count)  
+        print(gender_count)
 
     except KeyError:
         print("\nThe number of users per gender: Not Available")
