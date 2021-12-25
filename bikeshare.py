@@ -120,7 +120,7 @@ def time_stats(df, month, day):
         most_common_month = df["month"].mode()[0]
         months = ["January", "February", "March", "April", "May", "June"]
         most_common_month = months[most_common_month-1]
-        print(f"The most common month:" {most_common_month})
+        print(f"The most common month: {most_common_month}")
 
 
 
