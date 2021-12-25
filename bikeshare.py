@@ -123,6 +123,7 @@ def time_stats(df, month, day):
         print(f"The most common month:" {most_common_month})
 
 
+
     # TO DO: display the most common day of week
     # The question, "the most common day of the week", is only valid if the user requests for all the available months
     if day == "all":
